@@ -4,7 +4,7 @@
 // want to bite something.  Once this trait is defined, you should be able to run the program with
 // `cargo run` without any errors.
 //
-//  trait Bite...
+trait Bite...
 
 
 // 2. Now create a struct named Grapes with a field that tracks how many grapes are left.  If you
