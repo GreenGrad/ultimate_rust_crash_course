@@ -17,9 +17,9 @@ enum Shot {
 impl Shot {
     // Here is a method for the `Shot` enum you just defined.
     fn points(self) -> i32 {
-        match(&self) {
+        match &self {
             Shot::Bullseye => 5,
-            Shot::Hit(distance) if *distance < 3.0f64 => 2,
+            Shot::Hit(x) if *x < 3.0f64 => 2,
             Shot::Hit(_) => 1,
             Shot::Miss => 0
         }
@@ -44,11 +44,22 @@ fn main() {
     //      - Less than 1.0 -- `Shot::Bullseye`
     //      - Between 1.0 and 5.0 -- `Shot::Hit(value)`
     //      - Greater than 5.0 -- `Shot::Miss`
-
+    for coord in arrow_coords {
+        coord.print_description();
+        let shot = match coord.distance_from_center() {
+            x if x < 1.0 => Shot::Bullseye,
+            x if x < 5.0 => Shot::Hit(x),
+            _ => Shot::Miss,
+        };
+        shots.push(shot);
+    }
 
     let mut total = 0;
     // 3. Finally, loop through each shot in shots and add its points to total
-
+    //for shot in &shots {
+    //    let points = match shot {
+    //    };
+    //}
     println!("Final point total is: {}", total);
 }
 
